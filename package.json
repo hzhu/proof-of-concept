@@ -1,0 +1,56 @@
+{
+  "name": "matcha",
+  "private": true,
+  "sideEffects": false,
+  "scripts": {
+    "build": "run-s build:*",
+    "build:css": "npm run generate:css -- --minify",
+    "build:remix": "remix build",
+    "dev": "run-p dev:*",
+    "dev:css": "npm run generate:css -- --watch",
+    "dev:remix": "remix dev",
+    "generate:css": "npx tailwindcss -o ./app/tailwind.css",
+    "start": "remix-serve build",
+    "e2e:open": "start-server-and-test dev http://localhost:3000 \"npx cypress open\"",
+    "e2e:run": "start-server-and-test dev http://localhost:3000 \"npx cypress run\""
+  },
+  "dependencies": {
+    "@ethersproject/bignumber": "^5.6.2",
+    "@ethersproject/units": "^5.6.1",
+    "@rainbow-me/rainbowkit": "^0.2.3",
+    "@remix-run/node": "^1.5.1",
+    "@remix-run/react": "^1.5.1",
+    "@remix-run/vercel": "^1.5.1",
+    "@types/qs": "^6.9.7",
+    "@vercel/node": "^1.15.2",
+    "clsx": "^1.1.1",
+    "cypress": "^10.0.2",
+    "ethers": "^5.6.8",
+    "lodash.debounce": "^4.0.8",
+    "qs": "^6.10.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "wagmi": "^0.4.7"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^1.5.1",
+    "@remix-run/eslint-config": "^1.5.1",
+    "@remix-run/serve": "^1.5.1",
+    "@testing-library/cypress": "^8.0.3",
+    "@testing-library/dom": "^8.13.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^12.1.5",
+    "@testing-library/user-event": "^14.2.0",
+    "@types/lodash.debounce": "^4.0.7",
+    "@types/react": "^17.0.45",
+    "@types/react-dom": "^17.0.17",
+    "eslint": "^8.15.0",
+    "npm-run-all": "^4.1.5",
+    "start-server-and-test": "^1.14.0",
+    "tailwindcss": "^3.0.24",
+    "typescript": "^4.6.4"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
