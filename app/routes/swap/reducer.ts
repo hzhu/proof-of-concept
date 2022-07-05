@@ -56,7 +56,7 @@ export const reducer = (
   state: IReducerState,
   action: ActionTypes
 ): IReducerState => {
-  console.log(action);
+  // console.log(action);
   switch (action.type) {
     case "select network":
       return { ...state, network: action.payload };

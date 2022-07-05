@@ -25,23 +25,29 @@ const global = {
     es: "Cambiar entre modo claro y oscuro",
     fr: "Basculer entre les modes clair et sombre",
   },
+
+  "Connect Wallet": {
+    en: "Connect Wallet",
+    es: "Conectar billetera",
+    fr: "Connecter portefeuille",
+  },
 };
 
 const home = {
+  Hello: {
+    en: "Hello 👋 welcome! Let us create a tokenized world where value can flow freely",
+    es: "Hola 👋 bienvenido! Creemos un mundo tokenizado donde el valor pueda fluir libremente",
+    fr: "Bonjour 👋 bienvenue ! Créons un monde symbolisé où la valeur peut circuler librement",
+  },
   "Start trading": {
     en: "Start trading",
     es: "Comienza a negociar",
-    fr: "Commencer à négocier",
+    fr: "Commencer à négocier",    
   },
   "Home page": {
     en: "Home page",
     es: "Página de inicio",
     fr: "Page d'accueil",
-  },
-  "As more assets become tokenized": {
-    en: "As more assets become tokenized, public blockchains provide the opportunity to establish a new financial stack that is more efficient, transparent, and equitable than any system in the past. Let us create a tokenized world where value can flow freely",
-    es: "A medida que se tokenizan más activos, las cadenas de bloques públicas brindan la oportunidad de establecer una nueva pila financiera que es más eficiente, transparente y equitativa que cualquier sistema en el pasado. Creemos un mundo tokenizado donde el valor pueda fluir libremente",
-    fr: "Au fur et à mesure que de plus en plus d'actifs deviennent tokenisés, les blockchains publiques offrent la possibilité d'établir une nouvelle pile financière qui est plus efficace, transparente et équitable que n'importe quel système dans le passé. Créons un monde symbolisé où la valeur peut circuler librement",
   },
 };
 
@@ -71,12 +77,7 @@ const swap = {
     es: "Realizar Pedido",
     fr: "Passer la commande",
   },
-  "Connect Wallet": {
-    en: "Connect Wallet",
-    es: "Conectar billetera",
-    fr: "Connecter portefeuille",
-  },
-  Processing: {
+  "Processing": {
     en: "Processing",
     es: "Procesando",
     fr: "Traitement",
@@ -91,11 +92,11 @@ const swap = {
     es: "Cambiar las direcciones comerciales",
     fr: "Changer de direction commerciale",
   },
-  "soon, my fren": {
-    en: "soon, my fren",
-    es: "bientôt, mon ami",
-    fr: "pronto, mi amiga",
-  },
+  disclosure: {
+    en: "⚠️ WARNING ⚠️ THIS IS A PROOF OF CONCEPT. ONLY TRADE SMALL AMOUNTS ON POLYGON.",
+    es: "⚠️ ADVERTENCIA ⚠️ ESTA ES UNA PRUEBA DE CONCEPTO. SÓLO COMERCIE PEQUEÑAS CANTIDADES EN POLYGON.",
+    fr: "⚠️ ATTENTION ⚠️ CECI EST UNE PREUVE DE CONCEPT. COMMERCEZ UNIQUEMENT DE PETITES QUANTITÉS SUR POLYGONE."
+  }
 };
 
 const translations = { ...global, ...home, ...swap };

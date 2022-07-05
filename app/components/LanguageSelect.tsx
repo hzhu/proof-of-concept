@@ -17,7 +17,7 @@ export const LanguageSelect: FC<{ lang: Language }> = ({ lang }) => {
       <select
         value={lang}
         id="language-select"
-        className="mt-3 border border-slate-400 text-sm transition-[background] dark:transition-[background] duration-500 dark:duration-500 bg-slate-50 dark:text-slate-50 dark:bg-slate-900"
+        className="mt-3 border text-sm transition-[background] dark:transition-[background] duration-500 dark:duration-500 bg-slate-50 dark:text-slate-50 dark:bg-slate-900"
         onChange={(e) => {
           setSearchParams({
             ...Object.fromEntries(searchParams),

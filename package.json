@@ -17,7 +17,8 @@
   "dependencies": {
     "@ethersproject/bignumber": "^5.6.2",
     "@ethersproject/units": "^5.6.1",
-    "@rainbow-me/rainbowkit": "^0.2.3",
+    "@headlessui/react": "^1.6.3",
+    "@rainbow-me/rainbowkit": "^0.4.1",
     "@remix-run/node": "^1.5.1",
     "@remix-run/react": "^1.5.1",
     "@remix-run/vercel": "^1.5.1",
@@ -30,12 +31,13 @@
     "qs": "^6.10.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "wagmi": "^0.4.7"
+    "wagmi": "^0.5.6"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.5.1",
     "@remix-run/eslint-config": "^1.5.1",
     "@remix-run/serve": "^1.5.1",
+    "@tailwindcss/forms": "^0.5.2",
     "@testing-library/cypress": "^8.0.3",
     "@testing-library/dom": "^8.13.0",
     "@testing-library/jest-dom": "^5.16.4",

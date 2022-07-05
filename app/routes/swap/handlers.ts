@@ -11,7 +11,7 @@ import type { Quote } from "~/hooks/useFetchDebounceQuote";
 export async function onSellTokenSelect(
   e: ChangeEvent<HTMLSelectElement>,
   state: IReducerState,
-  dispatch: Dispatch<ActionTypes>
+  dispatch: Dispatch<ActionTypes>,
 ) {
   dispatch({ type: "choose sell token", payload: e.target.value });
   if (state.sellAmount === "") return;
@@ -132,69 +132,5 @@ export async function onDirectionChange(
         formatUnits(data.buyAmount, TOKENS[state.sellToken].decimal)
       ).toFixed(6),
     });
-  }
-}
-
-export function onSellAmountChange(
-  e: ChangeEvent<HTMLInputElement>,
-  state: IReducerState,
-  dispatch: Dispatch<ActionTypes>,
-  fetchSellQuoteRef: any
-) {
-  if (e.target.validity.valid) {
-    dispatch({ type: "set sell amount", payload: e.target.value });
-    dispatch({ type: "set direction", payload: "sell" });
-    if (
-      e.target.value &&
-      e.target.value !== "0" &&
-      e.target.value.slice(-1) !== "."
-    ) {
-      console.log(e.target.value);
-      const params = {
-        sellToken: state.sellToken,
-        buyToken: state.buyToken,
-        sellAmount: parseUnits(
-          e.target.value,
-          TOKENS[state.sellToken].decimal
-        ).toString(),
-      };
-
-      if (fetchSellQuoteRef.current) {
-        dispatch({ type: "fetching quote", payload: true });
-        fetchSellQuoteRef.current(params, state.network);
-      }
-    }
-  }
-}
-
-export function onBuyAmountChange(
-  e: ChangeEvent<HTMLInputElement>,
-  state: IReducerState,
-  dispatch: Dispatch<ActionTypes>,
-  fetchBuyQuoteRef: any
-) {
-  if (e.target.validity.valid) {
-    dispatch({ type: "set buy amount", payload: e.target.value });
-    dispatch({ type: "set direction", payload: "buy" });
-
-    if (
-      e.target.value &&
-      e.target.value !== "0" &&
-      e.target.value.slice(-1) !== "."
-    ) {
-      const params = {
-        sellToken: state.sellToken,
-        buyToken: state.buyToken,
-        buyAmount: parseUnits(
-          e.target.value,
-          TOKENS[state.buyToken].decimal
-        ).toString(),
-      };
-
-      if (fetchBuyQuoteRef.current) {
-        dispatch({ type: "fetching quote", payload: true });
-        fetchBuyQuoteRef.current(params, state.network);
-      }
-    }
   }
 }

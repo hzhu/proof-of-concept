@@ -22,9 +22,7 @@ export function useSetupWagmi({
 }) {
   const [chains, setChains] = useState<Chain[]>([]);
   const [client, setClient] = useState<
-    Client<StaticJsonRpcProvider | FallbackProvider, WebSocketProvider> & {
-      queryClient: QueryClient;
-    }
+    Client<(StaticJsonRpcProvider & { chains: Chain[]; }) | (FallbackProvider & { chains: Chain[]; }), WebSocketProvider>
   >();
 
   useEffect(() => {
@@ -37,6 +35,8 @@ export function useSetupWagmi({
       [
         chain.mainnet,
         chain.polygon,
+        // chain.optimism,
+        // chain.arbitrum,
         ...testChains,
       ],
       [alchemyProvider({ alchemyId }), publicProvider()]
