@@ -31,8 +31,9 @@ export const LanguageSelect: FC<{ lang: Language }> = ({ lang }) => {
         }}
       >
         <option value="en">🇺🇸 English</option>
-        <option value="es">🇪🇸 Español</option>
+        {/* <option value="es">🇪🇸 Español</option> */}
         <option value="fr">🇫🇷 Français</option>
+        <option value="ko">🇰🇷 한국어</option>
       </select>
     </>
   );

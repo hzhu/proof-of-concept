@@ -1,0 +1,8 @@
+require: 'ts-node/register'
+color: true
+recursive: true
+timeout: '200000'
+exit: true
+spec:
+  - 'test/**/*.spec.ts'
+  

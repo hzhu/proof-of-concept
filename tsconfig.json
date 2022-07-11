@@ -16,5 +16,6 @@
       "~/*": ["./app/*"]
     },
     "noEmit": true
-  }
+  },
+  "files": ["declarations.d.ts"],
 }

@@ -3,10 +3,10 @@ import { formatUnits, parseUnits } from "@ethersproject/units";
 import { TOKENS, ENDPOINTS, CHAIN_IDS } from "~/constants";
 import { fetchQuote } from "./utils";
 
-import type { IReducerState } from "./reducer";
-import type { ChangeEvent, Dispatch } from "react";
+import type { Dispatch, ChangeEvent, MutableRefObject } from "react";
 import type { ActionTypes } from "./reducer";
-import type { Quote } from "~/hooks/useFetchDebounceQuote";
+import type { IReducerState } from "./reducer";
+import type { Quote, DebouncedFetch } from "~/hooks/useFetchDebounceQuote";
 
 export async function onSellTokenSelect(
   e: ChangeEvent<HTMLSelectElement>,
@@ -132,5 +132,73 @@ export async function onDirectionChange(
         formatUnits(data.buyAmount, TOKENS[state.sellToken].decimal)
       ).toFixed(6),
     });
+  }
+}
+
+export function onSellAmountChange({
+  e,
+  state,
+  dispatch,
+  fetchSellQuoteRef,
+}: {
+  e: ChangeEvent<HTMLInputElement>,
+  state: IReducerState,
+  dispatch: Dispatch<ActionTypes>
+  fetchSellQuoteRef: MutableRefObject<DebouncedFetch | undefined>;
+}) {
+  if (e.target.validity.valid) {
+    dispatch({
+      type: "set sell amount",
+      payload: e.target.value,
+    });
+    dispatch({ type: "set direction", payload: "sell" });
+    if (e.target.value) {
+      const params = {
+        sellToken: state.sellToken,
+        buyToken: state.buyToken,
+        sellAmount: parseUnits(
+          e.target.value,
+          TOKENS[state.sellToken].decimal
+        ).toString(),
+      };
+
+      if (fetchSellQuoteRef.current) {
+        dispatch({ type: "fetching quote", payload: true });
+        fetchSellQuoteRef.current(params, state.network);
+      }
+    }
+  }
+}
+
+export function onBuyAmountChange({
+  e,
+  state,
+  dispatch,
+  fetchBuyQuoteRef,
+}: {
+  e: ChangeEvent<HTMLInputElement>,
+  state: IReducerState,
+  dispatch: Dispatch<ActionTypes>
+  fetchBuyQuoteRef: MutableRefObject<DebouncedFetch | undefined>;
+}) {
+  if (e.target.validity.valid) {
+    dispatch({ type: "set buy amount", payload: e.target.value });
+    dispatch({ type: "set direction", payload: "buy" });
+
+    const params = {
+      sellToken: state.sellToken,
+      buyToken: state.buyToken,
+      buyAmount: parseUnits(
+        e.target.value,
+        TOKENS[state.buyToken].decimal
+      ).toString(),
+    };
+
+    if (e.target.value) {
+      if (fetchBuyQuoteRef.current) {
+        dispatch({ type: "fetching quote", payload: true });
+        fetchBuyQuoteRef.current(params, state.network);
+      }
+    }
   }
 }

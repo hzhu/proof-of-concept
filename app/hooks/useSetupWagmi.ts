@@ -22,7 +22,13 @@ export function useSetupWagmi({
 }) {
   const [chains, setChains] = useState<Chain[]>([]);
   const [client, setClient] = useState<
-    Client<(StaticJsonRpcProvider & { chains: Chain[]; }) | (FallbackProvider & { chains: Chain[]; }), WebSocketProvider>
+    Client<
+      | (StaticJsonRpcProvider & { chains: Chain[] })
+      | (FallbackProvider & { chains: Chain[] }),
+      WebSocketProvider
+    > & {
+      queryClient: QueryClient;
+    }
   >();
 
   useEffect(() => {

@@ -15,3 +15,9 @@ npm run dev
 ```
 
 Open up [http://localhost:3000](http://localhost:3000).
+
+## Testing
+
+```
+npm run e2e:puppeteer
+```

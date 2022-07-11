@@ -1,14 +1,30 @@
-import { Link, useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/node";
+import { getSession } from "~/session.server";
 import type { LoaderFunction } from "@remix-run/node";
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader: LoaderFunction = async ({ params, request }) => {
+  const session = await getSession(request);
+  const lang = session.getLang();
   const response = await fetch(
     `https://api.coingecko.com/api/v3/coins/${params.coinId}`
   );
   const data = await response.json();
-  const { description = {}, ico_data, contract_address, image = {}, links = {}, name } = data;
-  const { en } = description;
+  const {
+    description = {},
+    ico_data,
+    contract_address,
+    image = {},
+    links = {},
+    name,
+  } = data;
+
+  let localizedDescription = description[lang];
+
+  if (localizedDescription === '') {
+    localizedDescription = description['en'];
+  }
+
   const { large } = image;
   const { description: icoDescription = "" } = ico_data || {};
   const { twitter_screen_name } = links;
@@ -18,7 +34,7 @@ export const loader: LoaderFunction = async ({ params }) => {
     image: large,
     contract_address,
     twitter_screen_name,
-    description: (en || icoDescription).split(".")[0] + ".",
+    description: localizedDescription || icoDescription,
   });
 };
 
@@ -26,7 +42,7 @@ export default function Coin() {
   const coin = useLoaderData();
 
   return (
-    <div className="py-3 px-6 md:py-12 md:px-32 max-w-screen-lg mx-auto">      
+    <div className="py-3 px-6 md:py-12 md:px-32 max-w-screen-lg mx-auto">
       <div className="flex items-center">
         <img alt="" src={coin.image} className="w-10" />
         <h1 className="mx-1 text-2xl md:text-3xl">{coin.name}</h1>
@@ -48,8 +64,11 @@ export default function Coin() {
         </svg>
         @{coin.twitter_screen_name}
       </a>
-      <p className="mt-1">{coin.description}</p>
-      <Link to="/search" className="inline-block mt-3">&larr; Navigate to search page</Link>
+      {/* https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml */}
+      <p
+        className="mt-1"
+        dangerouslySetInnerHTML={{ __html: coin.description }}
+      ></p>
     </div>
   );
 }

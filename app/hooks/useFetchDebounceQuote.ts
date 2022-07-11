@@ -42,7 +42,7 @@ export interface ZeroExApiRequestParams {
   buyAmount?: string;
 }
 
-type DebouncedFetch = DebouncedFunc<
+export type DebouncedFetch = DebouncedFunc<
   (params: ZeroExApiRequestParams, network: string) => Promise<void>
 >;
 

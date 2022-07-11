@@ -1,5 +1,5 @@
 {
-  "name": "matcha",
+  "name": "coffee",
   "private": true,
   "sideEffects": false,
   "scripts": {
@@ -12,7 +12,8 @@
     "generate:css": "npx tailwindcss -o ./app/tailwind.css",
     "start": "remix-serve build",
     "e2e:open": "start-server-and-test dev http://localhost:3000 \"npx cypress open\"",
-    "e2e:run": "start-server-and-test dev http://localhost:3000 \"npx cypress run\""
+    "e2e:run": "start-server-and-test dev http://localhost:3000 \"npx cypress run\"",
+    "e2e:puppeteer": "start-server-and-test dev http://localhost:3000 \"npx mocha\""
   },
   "dependencies": {
     "@ethersproject/bignumber": "^5.6.2",
@@ -34,6 +35,7 @@
     "wagmi": "^0.5.6"
   },
   "devDependencies": {
+    "@chainsafe/dappeteer": "^3.0.0-rc.0",
     "@remix-run/dev": "^1.5.1",
     "@remix-run/eslint-config": "^1.5.1",
     "@remix-run/serve": "^1.5.1",
@@ -43,13 +45,20 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.5",
     "@testing-library/user-event": "^14.2.0",
+    "@types/chai": "^4.3.1",
     "@types/lodash.debounce": "^4.0.7",
+    "@types/mocha": "^9.1.1",
     "@types/react": "^17.0.45",
     "@types/react-dom": "^17.0.17",
+    "chai-url": "^1.0.4",
     "eslint": "^8.15.0",
+    "mocha": "^10.0.0",
     "npm-run-all": "^4.1.5",
+    "pptr-testing-library": "^0.7.0",
+    "puppeteer": "^15.3.2",
     "start-server-and-test": "^1.14.0",
     "tailwindcss": "^3.0.24",
+    "ts-node": "^10.8.2",
     "typescript": "^4.6.4"
   },
   "engines": {
