@@ -32,7 +32,7 @@ async function getSession(request: Request) {
     setLang: (lang: Language) => session.set("lang", lang),
     getTheme: () => {
       const themeValue = session.get("theme");
-      return isTheme(themeValue) ? themeValue : null;
+      return isTheme(themeValue) ? themeValue : "light";
     },
     setTheme: (theme: Theme) => session.set("theme", theme),
     commit: () => sessionStorage.commitSession(session),
