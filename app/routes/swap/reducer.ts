@@ -31,7 +31,7 @@ export type ActionTypes =
 const initialState = {
   sellToken: "usdc",
   buyToken: "weth",
-  network: "",
+  network: "ethereum",
   sellAmount: "",
   buyAmount: "",
   fetching: false,
